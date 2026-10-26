@@ -550,6 +550,8 @@ export default function App() {
             {/* Common Fields */}
             <Text style={styles.inputLabel}>Username</Text>
             <TextInput
+              testID="mobile-auth-username"
+              accessibilityLabel="mobile-auth-username"
               style={styles.inputField}
               value={authUsername}
               onChangeText={setAuthUsername}
@@ -560,6 +562,8 @@ export default function App() {
 
             <Text style={styles.inputLabel}>Password</Text>
             <TextInput
+              testID="mobile-auth-password"
+              accessibilityLabel="mobile-auth-password"
               style={styles.inputField}
               value={authPassword}
               onChangeText={setAuthPassword}
@@ -570,6 +574,8 @@ export default function App() {
 
             {/* Submit Button */}
             <TouchableOpacity
+              testID="mobile-auth-submit-btn"
+              accessibilityLabel="mobile-auth-submit-btn"
               style={[styles.primaryButton, { marginTop: 16 }]}
               onPress={handleAuthSubmit}
               disabled={authLoading}
@@ -588,6 +594,8 @@ export default function App() {
               <Text style={styles.demoSectionTitle}>1-CLICK RESEARCH DEMO ACCOUNTS</Text>
               <View style={styles.demoBtnRow}>
                 <TouchableOpacity
+                  testID="mobile-demo-student-btn"
+                  accessibilityLabel="mobile-demo-student-btn"
                   style={styles.demoBtn}
                   onPress={() => handleQuickDemoAuth('alex_student')}
                   disabled={authLoading}
@@ -597,6 +605,8 @@ export default function App() {
                 </TouchableOpacity>
 
                 <TouchableOpacity
+                  testID="mobile-demo-instructor-btn"
+                  accessibilityLabel="mobile-demo-instructor-btn"
                   style={styles.demoBtn}
                   onPress={() => handleQuickDemoAuth('dr_sarah_instructor')}
                   disabled={authLoading}
@@ -1657,6 +1667,8 @@ export default function App() {
       {/* Bottom Navigation Tab Bar (Home, Search, Compare, Analytics, Profile) */}
       <View style={styles.tabBar}>
         <TouchableOpacity
+          testID="mobile-tab-home"
+          accessibilityLabel="mobile-tab-home"
           style={[styles.tabItem, activeTab === 'home' && styles.tabItemActive]}
           onPress={() => setActiveTab('home')}
         >
@@ -1665,6 +1677,8 @@ export default function App() {
         </TouchableOpacity>
 
         <TouchableOpacity
+          testID="mobile-tab-search"
+          accessibilityLabel="mobile-tab-search"
           style={[styles.tabItem, activeTab === 'search' && styles.tabItemActive]}
           onPress={() => setActiveTab('search')}
         >
@@ -1673,6 +1687,8 @@ export default function App() {
         </TouchableOpacity>
 
         <TouchableOpacity
+          testID="mobile-tab-compare"
+          accessibilityLabel="mobile-tab-compare"
           style={[styles.tabItem, activeTab === 'compare' && styles.tabItemActive]}
           onPress={() => setActiveTab('compare')}
         >
@@ -1681,6 +1697,8 @@ export default function App() {
         </TouchableOpacity>
 
         <TouchableOpacity
+          testID="mobile-tab-analytics"
+          accessibilityLabel="mobile-tab-analytics"
           style={[styles.tabItem, activeTab === 'analytics' && styles.tabItemActive]}
           onPress={() => setActiveTab('analytics')}
         >
@@ -1689,6 +1707,8 @@ export default function App() {
         </TouchableOpacity>
 
         <TouchableOpacity
+          testID="mobile-tab-profile"
+          accessibilityLabel="mobile-tab-profile"
           style={[styles.tabItem, activeTab === 'profile' && styles.tabItemActive]}
           onPress={() => setActiveTab('profile')}
         >

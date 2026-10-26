@@ -512,6 +512,8 @@ export default function LoginPage({ onLoginSuccess }) {
             }}>
               <button
                 type="button"
+                id="tab-password-login"
+                data-testid="tab-password-login"
                 onClick={() => { setAuthMode('password-login'); setErrorMsg(null); setSuccessMsg(null); }}
                 style={{
                   flex: 1,
@@ -536,6 +538,8 @@ export default function LoginPage({ onLoginSuccess }) {
 
               <button
                 type="button"
+                id="tab-register"
+                data-testid="tab-register"
                 onClick={() => { setAuthMode('register'); setErrorMsg(null); setSuccessMsg(null); }}
                 style={{
                   flex: 1,
@@ -561,18 +565,22 @@ export default function LoginPage({ onLoginSuccess }) {
 
             {/* Error Message Alert */}
             {errorMsg && (
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '10px 14px',
-                borderRadius: '10px',
-                background: 'rgba(239, 68, 68, 0.15)',
-                border: '1px solid rgba(239, 68, 68, 0.35)',
-                color: '#fca5a5',
-                fontSize: '0.82rem',
-                marginBottom: '16px'
-              }}>
+              <div 
+                id="auth-error-alert"
+                data-testid="auth-error-alert"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '10px 14px',
+                  borderRadius: '10px',
+                  background: 'rgba(239, 68, 68, 0.15)',
+                  border: '1px solid rgba(239, 68, 68, 0.35)',
+                  color: '#fca5a5',
+                  fontSize: '0.82rem',
+                  marginBottom: '16px'
+                }}
+              >
                 <AlertCircle size={16} color="#ef4444" style={{ flexShrink: 0 }} />
                 <span>{errorMsg}</span>
               </div>
@@ -580,18 +588,22 @@ export default function LoginPage({ onLoginSuccess }) {
 
             {/* Success Message Alert */}
             {successMsg && (
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '10px 14px',
-                borderRadius: '10px',
-                background: 'rgba(16, 185, 129, 0.15)',
-                border: '1px solid rgba(16, 185, 129, 0.35)',
-                color: '#6ee7b7',
-                fontSize: '0.82rem',
-                marginBottom: '16px'
-              }}>
+              <div 
+                id="auth-success-alert"
+                data-testid="auth-success-alert"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '10px 14px',
+                  borderRadius: '10px',
+                  background: 'rgba(16, 185, 129, 0.15)',
+                  border: '1px solid rgba(16, 185, 129, 0.35)',
+                  color: '#6ee7b7',
+                  fontSize: '0.82rem',
+                  marginBottom: '16px'
+                }}
+              >
                 <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0 }} />
                 <span>{successMsg}</span>
               </div>
@@ -601,14 +613,16 @@ export default function LoginPage({ onLoginSuccess }) {
             {/* 1. PASSWORD LOGIN FORM (For Existing / Old Users)         */}
             {/* ========================================================= */}
             {authMode === 'password-login' && (
-              <form onSubmit={handlePasswordLogin} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <form id="password-login-form" data-testid="password-login-form" onSubmit={handlePasswordLogin} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '5px' }}>
+                  <label htmlFor="login-username-input" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '5px' }}>
                     Username or Email
                   </label>
                   <div style={{ position: 'relative' }}>
                     <User size={16} color="#64748b" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
                     <input
+                      id="login-username-input"
+                      data-testid="login-username-input"
                       type="text"
                       required
                       value={username}
@@ -630,11 +644,13 @@ export default function LoginPage({ onLoginSuccess }) {
 
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
-                    <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#cbd5e1' }}>
+                    <label htmlFor="login-password-input" style={{ fontSize: '0.8rem', fontWeight: 600, color: '#cbd5e1' }}>
                       Password
                     </label>
                     <button
                       type="button"
+                      id="btn-forgot-password"
+                      data-testid="btn-forgot-password"
                       onClick={handleForgotPassword}
                       style={{
                         background: 'none',
@@ -657,6 +673,8 @@ export default function LoginPage({ onLoginSuccess }) {
                   <div style={{ position: 'relative' }}>
                     <Lock size={16} color="#64748b" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
                     <input
+                      id="login-password-input"
+                      data-testid="login-password-input"
                       type="password"
                       required
                       value={password}
@@ -678,6 +696,8 @@ export default function LoginPage({ onLoginSuccess }) {
 
                 <button
                   type="submit"
+                  id="login-submit-button"
+                  data-testid="login-submit-button"
                   disabled={loading}
                   className="btn-primary"
                   style={{
@@ -722,14 +742,16 @@ export default function LoginPage({ onLoginSuccess }) {
             {/* 2. REGISTER FORM (For New Users)                         */}
             {/* ========================================================= */}
             {authMode === 'register' && (
-              <form onSubmit={handleRegister} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <form id="register-form" data-testid="register-form" onSubmit={handleRegister} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
+                  <label htmlFor="register-fullname-input" style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
                     Full Name
                   </label>
                   <div style={{ position: 'relative' }}>
                     <User size={16} color="#64748b" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
                     <input
+                      id="register-fullname-input"
+                      data-testid="register-fullname-input"
                       type="text"
                       required
                       value={fullName}
@@ -750,12 +772,14 @@ export default function LoginPage({ onLoginSuccess }) {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
+                  <label htmlFor="register-email-input" style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
                     Email Address
                   </label>
                   <div style={{ position: 'relative' }}>
                     <Mail size={16} color="#64748b" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
                     <input
+                      id="register-email-input"
+                      data-testid="register-email-input"
                       type="email"
                       required
                       value={email}
@@ -777,10 +801,12 @@ export default function LoginPage({ onLoginSuccess }) {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
+                    <label htmlFor="register-username-input" style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
                       Username
                     </label>
                     <input
+                      id="register-username-input"
+                      data-testid="register-username-input"
                       type="text"
                       required
                       value={username}
@@ -799,10 +825,12 @@ export default function LoginPage({ onLoginSuccess }) {
                     />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
+                    <label htmlFor="register-password-input" style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
                       Password
                     </label>
                     <input
+                      id="register-password-input"
+                      data-testid="register-password-input"
                       type="password"
                       required
                       value={password}
@@ -824,10 +852,12 @@ export default function LoginPage({ onLoginSuccess }) {
 
                 <div style={{ display: 'flex', gap: '10px' }}>
                   <div style={{ flex: 1 }}>
-                    <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
+                    <label htmlFor="register-role-select" style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
                       Role
                     </label>
                     <select
+                      id="register-role-select"
+                      data-testid="register-role-select"
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
                       style={{
@@ -846,10 +876,12 @@ export default function LoginPage({ onLoginSuccess }) {
                     </select>
                   </div>
                   <div style={{ flex: 1 }}>
-                    <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
+                    <label htmlFor="register-cohort-select" style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '4px' }}>
                       Study Cohort
                     </label>
                     <select
+                      id="register-cohort-select"
+                      data-testid="register-cohort-select"
                       value={groupAssignment}
                       onChange={(e) => setGroupAssignment(e.target.value)}
                       style={{
@@ -870,6 +902,8 @@ export default function LoginPage({ onLoginSuccess }) {
 
                 <button
                   type="submit"
+                  id="register-submit-button"
+                  data-testid="register-submit-button"
                   disabled={loading}
                   className="btn-primary"
                   style={{
@@ -931,14 +965,16 @@ export default function LoginPage({ onLoginSuccess }) {
                 </div>
 
                 {otpStep === 'request' ? (
-                  <form onSubmit={handleSendOTP} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <form id="otp-request-form" data-testid="otp-request-form" onSubmit={handleSendOTP} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                      <label htmlFor="otp-email-input" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
                         Your Account Email Address
                       </label>
                       <div style={{ position: 'relative' }}>
                         <Mail size={16} color="#818cf8" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
                         <input
+                          id="otp-email-input"
+                          data-testid="otp-email-input"
                           type="email"
                           required
                           value={email}
@@ -963,6 +999,8 @@ export default function LoginPage({ onLoginSuccess }) {
 
                     <button
                       type="submit"
+                      id="otp-send-button"
+                      data-testid="otp-send-button"
                       disabled={loading}
                       className="btn-primary"
                       style={{
@@ -992,6 +1030,8 @@ export default function LoginPage({ onLoginSuccess }) {
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: '10px', fontSize: '0.78rem' }}>
                       <button
                         type="button"
+                        id="btn-back-to-password-login"
+                        data-testid="btn-back-to-password-login"
                         onClick={() => { setAuthMode('password-login'); setErrorMsg(null); setSuccessMsg(null); }}
                         style={{ background: 'none', border: 'none', color: '#38bdf8', fontWeight: 600, cursor: 'pointer', textDecoration: 'underline' }}
                       >
@@ -999,6 +1039,8 @@ export default function LoginPage({ onLoginSuccess }) {
                       </button>
                       <button
                         type="button"
+                        id="btn-back-to-register"
+                        data-testid="btn-back-to-register"
                         onClick={() => { setAuthMode('register'); setErrorMsg(null); setSuccessMsg(null); }}
                         style={{ background: 'none', border: 'none', color: '#34d399', fontWeight: 600, cursor: 'pointer', textDecoration: 'underline' }}
                       >
@@ -1008,7 +1050,7 @@ export default function LoginPage({ onLoginSuccess }) {
                   </form>
                 ) : (
                   /* Verify OTP Code Screen */
-                  <form onSubmit={handleVerifyOTP} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <form id="otp-verify-form" data-testid="otp-verify-form" onSubmit={handleVerifyOTP} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div style={{
                       padding: '12px 14px',
                       background: 'rgba(99, 102, 241, 0.1)',
@@ -1022,11 +1064,13 @@ export default function LoginPage({ onLoginSuccess }) {
                         <Mail size={16} color="#818cf8" />
                         <div>
                           <div style={{ fontSize: '0.74rem', color: '#94a3b8' }}>Code sent to</div>
-                          <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>{email}</div>
+                          <div id="otp-target-email-display" data-testid="otp-target-email-display" style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>{email}</div>
                         </div>
                       </div>
                       <button
                         type="button"
+                        id="btn-change-otp-email"
+                        data-testid="btn-change-otp-email"
                         onClick={() => { setOtpStep('request'); setErrorMsg(null); }}
                         style={{
                           background: 'transparent',
@@ -1070,9 +1114,11 @@ export default function LoginPage({ onLoginSuccess }) {
                         alignItems: 'center',
                         justifyContent: 'space-between'
                       }}>
-                        <span>Dev OTP Code: <strong style={{ letterSpacing: '1px' }}>{previewOtpCode}</strong></span>
+                        <span>Dev OTP Code: <strong id="dev-otp-code-value" data-testid="dev-otp-code-value" style={{ letterSpacing: '1px' }}>{previewOtpCode}</strong></span>
                         <button
                           type="button"
+                          id="btn-autofill-otp"
+                          data-testid="btn-autofill-otp"
                           onClick={() => setOtpDigits(previewOtpCode.split(''))}
                           style={{
                             background: 'rgba(6, 182, 212, 0.3)',
@@ -1107,6 +1153,8 @@ export default function LoginPage({ onLoginSuccess }) {
                         {otpDigits.map((digit, idx) => (
                           <input
                             key={idx}
+                            id={`otp-digit-input-${idx}`}
+                            data-testid={`otp-digit-input-${idx}`}
                             ref={(el) => (otpInputsRef.current[idx] = el)}
                             type="text"
                             inputMode="numeric"
@@ -1136,10 +1184,12 @@ export default function LoginPage({ onLoginSuccess }) {
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.78rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: timerSeconds > 0 ? '#94a3b8' : '#ef4444' }}>
                         <Clock size={14} />
-                        <span>Code expires in: <strong>{formatTime(timerSeconds)}</strong></span>
+                        <span>Code expires in: <strong id="otp-timer-display" data-testid="otp-timer-display">{formatTime(timerSeconds)}</strong></span>
                       </div>
                       <button
                         type="button"
+                        id="btn-resend-otp"
+                        data-testid="btn-resend-otp"
                         disabled={!canResend || loading}
                         onClick={handleSendOTP}
                         style={{
@@ -1161,6 +1211,8 @@ export default function LoginPage({ onLoginSuccess }) {
                     {/* Verify Button */}
                     <button
                       type="submit"
+                      id="otp-verify-button"
+                      data-testid="otp-verify-button"
                       disabled={loading || otpDigits.join('').length !== 6}
                       className="btn-primary"
                       style={{

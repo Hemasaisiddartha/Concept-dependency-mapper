@@ -1,0 +1,17 @@
+{
+  "name": "concept-mapper-selenium-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive E2E Selenium Test Automation Suite for Concept Dependency Mapper Web Frontend",
+  "main": "tests/login-tests.js",
+  "scripts": {
+    "test": "node tests/login-tests.js",
+    "test:headless": "HEADLESS=true node tests/login-tests.js",
+    "generate:excel": "python ../generate_selenium_excel.py"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.20.0",
+    "chromedriver": "^130.0.0"
+  },
+  "author": "Hema Sai Siddartha",
+  "license": "MIT"
+}

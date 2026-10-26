@@ -1,0 +1,21 @@
+{
+  "name": "concept-mapper-appium-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive Mobile E2E Appium Test Automation Suite for Concept Dependency Mapper React Native / Android & iOS App",
+  "main": "tests/app-login-tests.js",
+  "scripts": {
+    "test": "node tests/app-login-tests.js",
+    "test:android": "PLATFORM=android node tests/app-login-tests.js",
+    "test:ios": "PLATFORM=ios node tests/app-login-tests.js",
+    "generate:excel": "python ../generate_appium_excel.py"
+  },
+  "dependencies": {
+    "webdriverio": "^8.36.0",
+    "@wdio/cli": "^8.36.0",
+    "@wdio/local-runner": "^8.36.0",
+    "@wdio/mocha-framework": "^8.36.0",
+    "@wdio/spec-reporter": "^8.36.0"
+  },
+  "author": "Hema Sai Siddartha",
+  "license": "MIT"
+}
