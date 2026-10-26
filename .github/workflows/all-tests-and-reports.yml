@@ -113,6 +113,7 @@ jobs:
           name: security-assessment-excel-reports
           path: |
             Vulnerability Test Results/findings.xlsx
+            Vulnerability Test Results/security-test-cases.xlsx
             Vulnerability Test Results/endpoint-inventory.xlsx
             Vulnerability Test Results/security-review.md
             Vulnerability Test Results/executive-summary.md
