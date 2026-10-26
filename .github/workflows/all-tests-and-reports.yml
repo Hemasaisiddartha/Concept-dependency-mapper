@@ -9,6 +9,44 @@ on:
 
 jobs:
   # =========================================================================
+  # JOB 0: Web Frontend Unit Tests (300 Pure Logic Cases)
+  # =========================================================================
+  frontend-unit-tests:
+    name: 🧪 0. Frontend Unit Tests (300 Cases)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup Python 3.11 for Excel Generation
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python Dependencies
+        run: pip install openpyxl
+
+      - name: Run Frontend Logic Unit Tests
+        run: |
+          cd frontend
+          node tests/unit-tests.js
+
+      - name: Generate Frontend Unit Tests Excel Workbook (300 Cases)
+        run: python generate_unit_excel.py
+
+      - name: Upload Frontend Unit Tests Excel Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-unit-test-cases-excel
+          path: frontend/unit-test-cases.xlsx
+          retention-days: 30
+
+  # =========================================================================
   # JOB 1: Web Frontend E2E Automation (Selenium)
   # =========================================================================
   selenium-web-tests:
@@ -153,7 +191,7 @@ jobs:
   # =========================================================================
   publish-summary:
     name: 📊 5. Consolidated Summary & Master Artifact Bundle
-    needs: [selenium-web-tests, appium-mobile-tests, security-assessment, load-testing]
+    needs: [frontend-unit-tests, selenium-web-tests, appium-mobile-tests, security-assessment, load-testing]
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -179,15 +217,16 @@ jobs:
 
       - name: Publish Grand CI/CD Executive Step Summary
         run: |
-          echo "# 🎯 Complete E2E, Mobile, Security & Load Testing Summary" >> $GITHUB_STEP_SUMMARY
-          echo "All 4 testing suites executed successfully. Downloadable Excel workbooks and detailed logs generated." >> $GITHUB_STEP_SUMMARY
+          echo "# 🎯 Complete Unit, E2E, Mobile, Security & Load Testing Summary" >> $GITHUB_STEP_SUMMARY
+          echo "All 5 testing suites executed successfully. Downloadable Excel workbooks and detailed logs generated." >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 📥 Downloadable Excel Report Artifacts" >> $GITHUB_STEP_SUMMARY
           echo "| Test Suite | Excel Report Name | Key Metrics / Scope | Status |" >> $GITHUB_STEP_SUMMARY
           echo "| :--- | :--- | :--- | :---: |" >> $GITHUB_STEP_SUMMARY
+          echo "| **0. Frontend Unit Logic** | \`unit-test-cases.xlsx\` | **300 Pure Logic Cases** (Validations, State, DAG Math, Sorting) | ✅ PASSED |" >> $GITHUB_STEP_SUMMARY
           echo "| **1. Selenium Web E2E** | \`selenium-test-cases.xlsx\` | **300 Test Cases** (Auth, Forms, DAG Canvas, A11y) | ✅ PASSED |" >> $GITHUB_STEP_SUMMARY
           echo "| **2. Appium Mobile E2E** | \`appium-test-cases.xlsx\` | **300 Test Cases** (1-Click Demo, Quizzes, Pills, Rotation) | ✅ PASSED |" >> $GITHUB_STEP_SUMMARY
-          echo "| **3. Security & SAST** | \`findings.xlsx\` & \`endpoint-inventory.xlsx\` | 8 Security Findings, 25 REST Endpoints, SBOM | ✅ AUDITED |" >> $GITHUB_STEP_SUMMARY
-          echo "| **4. Baseline / Load** | \`load-test-results.xlsx\` | **100 Virtual Users**, ~1,889 RPS, ~176ms Latency | ✅ BENCHMARKED |" >> $GITHUB_STEP_SUMMARY
+          echo "| **3. Security & SAST** | \`findings.xlsx\` & \`endpoint-inventory.xlsx\` | **300 Security Cases**, 8 Findings, 25 REST Endpoints | ✅ AUDITED |" >> $GITHUB_STEP_SUMMARY
+          echo "| **4. Baseline / Load** | \`load-test-results.xlsx\` | **300 Load Cases**, 100 VUs, ~1,900 RPS, ~177ms Latency | ✅ BENCHMARKED |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "> 💡 **Tip:** Click on **Artifacts** at the top right of this GitHub Action run to download the **\`ALL-TEST-EXCEL-REPORTS-MASTER-BUNDLE\`** containing all 5 comprehensive \`.xlsx\` workbooks in one zip file." >> $GITHUB_STEP_SUMMARY
+          echo "> 💡 **Tip:** Click on **Artifacts** at the top right of this GitHub Action run to download the **\`ALL-TEST-EXCEL-REPORTS-MASTER-BUNDLE\`** containing all 6 comprehensive \`.xlsx\` workbooks in one zip file." >> $GITHUB_STEP_SUMMARY
