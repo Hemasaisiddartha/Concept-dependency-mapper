@@ -1,0 +1,25 @@
+
+name: Project Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Check project files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository code
+        uses: actions/checkout@v4
+
+      - name: Verify project folders
+        run: |
+          test -d backend
+          test -d frontend
+          test -d mobile
+          echo "All project folders exist."
