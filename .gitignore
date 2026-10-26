@@ -1,0 +1,53 @@
+# Dependency directories
+node_modules/
+*/node_modules/
+mobile/node_modules/
+frontend/node_modules/
+
+# Python
+__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment variables & secrets
+.env
+*/.env
+*.env.local
+*.env.*.local
+*.pem
+*.key
+service-account*.json
+firebase-adminsdk*.json
+
+# Mobile & Expo
+.expo/
+.expo-shared/
+*.apk
+*.aab
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary screenshot captures and local test outputs
+current_phone_screen*.png
+mobile_screen*.png
+mobile/mobile_*.png
+*.tmp
+*.log

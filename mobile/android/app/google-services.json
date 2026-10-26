@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "641111406285",
+    "firebase_url": "https://ai-concept-mapper-55d53-default-rtdb.firebaseio.com",
+    "project_id": "ai-concept-mapper-55d53",
+    "storage_bucket": "ai-concept-mapper-55d53.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641111406285:android:d616a652982492396f5b84",
+        "android_client_info": {
+          "package_name": "com.aiconceptmapper.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP5aK6nPXqf8qTnIfL9xr79ejcJZGhwf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
