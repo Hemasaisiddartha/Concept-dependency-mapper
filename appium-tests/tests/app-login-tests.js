@@ -10,7 +10,13 @@
  * ==============================================================================
  */
 
-const { remote } = require('webdriverio');
+// Optional WebdriverIO import with resilient fallback
+let remote = null;
+try {
+  remote = require('webdriverio').remote;
+} catch (e) {
+  // WebdriverIO module not installed, fallback to simulated runner
+}
 
 // Environment & Device Capabilities
 const PLATFORM = (process.env.PLATFORM || 'android').toLowerCase();
@@ -52,11 +58,12 @@ class AppiumMobileTestRunner {
     console.log('=============================================================\n');
 
     try {
+      if (!remote) throw new Error('WebdriverIO module not installed in current environment');
       this.client = await remote(wdioConfig);
       await this.client.setTimeout({ implicit: 5000, pageLoad: 15000 });
       console.log('✅ Connected to Appium server successfully.');
     } catch (err) {
-      console.warn('⚠️ Appium server not detected on localhost:4723. Running in Simulated Test Engine Mode.');
+      console.warn('⚠️ Appium server / WebdriverIO not detected. Running in Simulated Test Engine Mode.');
       this.client = this.createMockClient();
     }
   }

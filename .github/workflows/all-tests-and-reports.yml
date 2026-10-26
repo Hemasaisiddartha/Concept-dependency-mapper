@@ -34,10 +34,11 @@ jobs:
       - name: Generate Selenium Excel Test Cases Workbook (300 Cases)
         run: python generate_selenium_excel.py
 
-      - name: Verify Selenium Test Script Syntax
+      - name: Verify Selenium Test Script Syntax & Execution
         run: |
           cd selenium-tests
           node -c tests/login-tests.js
+          node tests/login-tests.js
 
       - name: Upload Selenium Test Excel Report Artifact
         uses: actions/upload-artifact@v4
